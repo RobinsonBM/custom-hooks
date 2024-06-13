@@ -1,20 +1,20 @@
-import { useEffect, useReducer } from 'react';
-import { todoReducer } from '../08-useReducer/todoReducer';
+import { useEffect, useReducer } from "react";
+import { todoReducer } from "./todoReducer";
 
 const init = () => {
-  return JSON.parse(localStorage.getItem('todos')) || [];
+  return JSON.parse(localStorage.getItem("todos")) || [];
 };
 
 export const useTodos = () => {
   const [todos, dispatch] = useReducer(todoReducer, [], init);
 
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
+    localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
   const handleNewTodo = (todo) => {
     const action = {
-      type: 'ADD_TODO',
+      type: "ADD_TODO",
       payload: todo,
     };
     dispatch(action);
@@ -22,7 +22,7 @@ export const useTodos = () => {
 
   const handlerDelete = (todoId) => {
     const action = {
-      type: 'REMOVE_TODO',
+      type: "REMOVE_TODO",
       payload: todoId,
     };
     dispatch(action);
@@ -30,7 +30,7 @@ export const useTodos = () => {
 
   const handleToggleTodo = (todoId) => {
     const action = {
-      type: 'TOGGLE_TODO',
+      type: "TOGGLE_TODO",
       payload: todoId,
     };
     dispatch(action);
